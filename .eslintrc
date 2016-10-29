@@ -1,0 +1,11 @@
+{
+  "extends": "eslint-config-airbnb-base",
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }]
+  },
+}
