@@ -1,36 +1,36 @@
 .survey {
-  background-color: white;
   height: 100%;
   width: 100%;
+  background-color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items:center;
-  flex-direction: column;
 
   .survey__header, .survey__footer {
-    align-items: center;
+    max-width: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 95%;
+    align-items: center;
   }
 
   .survey__logo {
+    height: 100px;
+    width: 90%;
+    margin-bottom: 10px;
+    margin-top: 10px;
     background-image: url('../img/logo-improve--black.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 100px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    width: 90%;
   }
 
   .survey__question {
+    margin-bottom: 10px;
     font-family: Arial, sans-serif;
     font-size: 36px;
     font-weight: bold;
-    margin-bottom: 10px;
   }
 
   .survey__question__description {
@@ -38,33 +38,33 @@
   }
 
   .survey__skip {
+    height: auto;
+    display: flex;
     align-self: flex-end;
+    justify-content: center;
+    align-items: center;
+    padding-left: 16px;
+    margin-top:10px;
     background-color: black;
     color: white;
-    height: auto;
-    padding-left: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 5px;
-    margin-top:10px;
     font-family: Arial, sans-serif;
 
     .survey__skip__icon {
       color:white;
-      box-sizing: border-box;
       font-size: 36px;
     }
   }
 
   .survey__validate {
+    height: 120px;
+    width: 120px;
+    position:absolute;
+    bottom:-25px;
     background-color: black;
     border-radius: 50%;
     color: white;
-    position:absolute;
-    bottom:-25px;
-    height: 120px;
-    width: 120px;
+
     .survey__validate__icon {
       font-size: 48px;
     }
