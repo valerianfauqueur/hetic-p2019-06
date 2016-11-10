@@ -28,13 +28,14 @@
 
   .survey__question {
     margin-bottom: 10px;
-    font-family: Arial, sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-size: 36px;
     font-weight: bold;
   }
 
   .survey__question__description {
-    font-size: 21px;
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 16px;
   }
 
   .survey__skip {
@@ -48,7 +49,7 @@
     background-color: black;
     color: white;
     border-radius: 5px;
-    font-family: Arial, sans-serif;
+    font-family: "Lato", Arial, sans-serif;
 
     .survey__skip__icon {
       color:white;
