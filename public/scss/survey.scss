@@ -1,0 +1,72 @@
+.survey {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: column;
+
+  .survey__header, .survey__footer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 95%;
+  }
+
+  .survey__logo {
+    background-image: url('../img/logo-improve--black.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 90%;
+  }
+
+  .survey__question {
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .survey__question__description {
+    font-size: 21px;
+  }
+
+  .survey__skip {
+    align-self: flex-end;
+    background-color: black;
+    color: white;
+    height: auto;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-top:10px;
+    font-family: Arial, sans-serif;
+
+    .survey__skip__icon {
+      color:white;
+      box-sizing: border-box;
+      font-size: 36px;
+    }
+  }
+
+  .survey__validate {
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+    position:absolute;
+    bottom:-25px;
+    height: 120px;
+    width: 120px;
+    .survey__validate__icon {
+      font-size: 48px;
+    }
+  }
+}
