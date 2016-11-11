@@ -8,7 +8,8 @@ var gulp = require('gulp'),
   runSequence = require('run-sequence'),
   imageOptimizer = require('gulp-image'),
   eslint = require('gulp-eslint'),
-  sasslint = require('gulp-sass-lint');
+  sasslint = require('gulp-sass-lint'),
+  plumber = require('gulp-plumber');
 
 var processors = [
   autoprefixer,
@@ -21,6 +22,7 @@ var dirs = {
 
 gulp.task('scss', function() {
   return gulp.src(dirs.src + '/scss/**/*.scss')
+    .pipe(plumber())
     .pipe(sass())
     .pipe(postcss(processors))
     .pipe(gulp.dest(dirs.dist + 'css'))
@@ -29,6 +31,7 @@ gulp.task('scss', function() {
 
 gulp.task('ES6', function() {
   return gulp.src(dirs.src + '/js/**/*.js')
+    .pipe(plumber())
     .pipe(babel({
       presets: ['es2015']
     }))
@@ -43,23 +46,18 @@ gulp.task('imgOptimiz', function() {
 
 gulp.task('eslint', function() {
   return gulp.src([dirs.src + 'js/**/*.js', './server.js', 'app/**/*.js', '!views/**'])
+    .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('scsslint', function() {
-  return gulp.src(dirs.src + 'scss/**/*.scss')
-    .pipe(sasslint())
-    .pipe(sasslint.format())
-    .pipe(sasslint.failOnError());
-});
 
-gulp.task('sync', ['ES6', 'scss', 'imgOptimiz', 'eslint', 'scsslint'], function() {
+gulp.task('sync', ['ES6', 'scss', 'eslint'], function() {
   sync.init(null, {
     proxy: 'http://localhost:3300',
   });
-  gulp.watch(dirs.src + '/scss/**/*.scss', ['scss', 'scsslint']);
+  gulp.watch(dirs.src + '/scss/**/*.scss', ['scss']);
   gulp.watch(dirs.src + '/js/**/*.js', ['ES6', 'eslint']).on('change', sync.reload);
   gulp.watch('app/views/**/*.ejs').on('change', sync.reload);
 });
