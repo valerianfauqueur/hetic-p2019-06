@@ -61,13 +61,14 @@
   }
 
   .survey__body {
-    width:100%;
+    width:95%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     font-family: "Lato", Arial, sans-serif;
-    flex-grow: 2;
+    flex: 1;
 
     /**
       SURVEY AGE
@@ -115,8 +116,8 @@
       width: 20%;
       height: 0.5vh;
       background-color: #50e3c2;
-      position: fixed;
-      transform: translateX(-100%);
+      align-self: center;
+      margin-right: 10px;
     }
 
     .survey__height {
@@ -140,6 +141,45 @@
         font-size: 1.25rem;
         opacity: 1;
         font-weight: bold;
+      }
+    }
+
+    /**
+      SURVEY WEIGHT
+    */
+
+    .survey__weight__display {
+      font-size: 2rem;
+      font-weight: bold;
+      width:100%;
+      height: 20%;
+      display: flex;
+      align-items: flex-end;;
+      justify-content: center;
+    }
+
+    .survey__unit--weight {
+      align-self: flex-end;
+    }
+
+    .survey__weight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70%;
+
+      .weight__input {
+        margin: 0 1.5vw;
+        width:1.25vw;
+        height: 50%;
+        background-color: black;
+        transition: all 0.1s linear;
+      }
+
+      .weight__input--selected {
+        background-color: #50e3c2;
+        height: 90%;
       }
     }
   }
