@@ -3,13 +3,13 @@ var gulp = require('gulp'),
   sync = require('browser-sync').create(),
   postcss = require('gulp-postcss'),
   autoprefixer = require('autoprefixer'),
-  babel = require('gulp-babel'),
   nodemon = require('gulp-nodemon'),
   runSequence = require('run-sequence'),
   imageOptimizer = require('gulp-image'),
   eslint = require('gulp-eslint'),
-  sasslint = require('gulp-sass-lint'),
-  plumber = require('gulp-plumber');
+  plumber = require('gulp-plumber'),
+  webpack = require('webpack'),
+  webpackStream = require('webpack-stream');
 
 var processors = [
   autoprefixer,
@@ -18,48 +18,81 @@ var processors = [
 var dirs = {
   src: 'public/',
   dist: 'dist/',
+  app: 'app/',
 };
 
+dirs.clientJs = dirs.src + 'js';
+dirs.jsComponents = dirs.clientJs + '/components';
+dirs.jsControllers = dirs.clientJs + '/controllers';
+dirs.scss = dirs.src + 'scss';
+dirs.img = dirs.src + 'img';
+dirs.distCss = dirs.dist + 'css';
+dirs.distJs = dirs.dist + 'js';
+dirs.distImg = dirs.dist + 'img';
+dirs.serverJs = dirs.app;
+dirs.views = dirs.app + 'views';
+
 gulp.task('scss', function() {
-  return gulp.src(dirs.src + '/scss/**/*.scss')
+  return gulp.src(dirs.scss + '/**/*.scss')
     .pipe(plumber())
     .pipe(sass())
     .pipe(postcss(processors))
-    .pipe(gulp.dest(dirs.dist + 'css'))
+    .pipe(gulp.dest(dirs.distCss))
     .pipe(sync.stream());
 });
 
-gulp.task('ES6', function() {
-  return gulp.src(dirs.src + '/js/**/*.js')
-    .pipe(plumber())
-    .pipe(babel({
-      presets: ['es2015']
+gulp.task('bundle', function() {
+  gulp.src(dirs.clientJs + '/**/*.js')
+    .pipe(webpackStream({
+        devtool: 'source-map',
+        output: {
+          path: '/dist/js',
+          filename: 'bundle.js'
+        },
+        resolve: {
+          extensions: ['', '.js'],
+          modulesDirectories: [
+            'node_modules'
+          ]
+        },
+        module: {
+          loaders: [{
+            loader: 'babel-loader',
+            query: { presets: ['es2015'] },
+            exclude: ['./node_modules'],
+          }]
+        },
+        plugins: [
+          new webpack.NoErrorsPlugin()
+        ],
     }))
-    .pipe(gulp.dest(dirs.dist + 'js'));
+    .on('error', (err) => {
+      console.log(err)
+    })
+    .pipe(gulp.dest(dirs.distJs));
 });
 
 gulp.task('imgOptimiz', function() {
-  return gulp.src(dirs.src + 'img/**/*')
+  return gulp.src(dirs.img + '/**/*')
     .pipe(imageOptimizer())
-    .pipe(gulp.dest(dirs.dist + 'img'));
+    .pipe(gulp.dest(dirs.distImg));
 });
 
 gulp.task('eslint', function() {
-  return gulp.src([dirs.src + 'js/**/*.js', './server.js', 'app/**/*.js', '!views/**'])
+  return gulp.src([dirs.clientJs + '/**/*.js', dirs.serverJs + '/**/*.js', '!' + dirs.views + '/**'])
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-
-gulp.task('sync', ['ES6', 'scss', 'eslint'], function() {
+gulp.task('sync', ['bundle', 'scss', 'eslint'], function() {
   sync.init(null, {
     proxy: 'http://localhost:3300',
   });
-  gulp.watch(dirs.src + '/scss/**/*.scss', ['scss']);
-  gulp.watch(dirs.src + '/js/**/*.js', ['ES6', 'eslint']).on('change', sync.reload);
-  gulp.watch('app/views/**/*.ejs').on('change', sync.reload);
+  gulp.watch(dirs.scss + '/**/*.scss', ['scss']);
+  gulp.watch(dirs.clientJs + '/**/*.js', ['bundle', 'eslint']).on('change', sync.reload);
+  gulp.watch(dirs.views + '/**/*.ejs').on('change', sync.reload);
 });
 
 gulp.task('nodemon', function(cb) {
@@ -73,6 +106,5 @@ gulp.task('nodemon', function(cb) {
 });
 
 gulp.task('default', ['sync'], function() {
-  console.log('Starting...');
   runSequence('nodemon');
 });
