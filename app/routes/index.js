@@ -13,3 +13,9 @@ app.get('/survey/question-1', (req, res) => {
     page: 'age',
   });
 });
+app.get('/survey/question-2', (req, res) => {
+  res.render('index', {
+    pageTitle: 'Improve - Survey',
+    page: 'height',
+  });
+});
