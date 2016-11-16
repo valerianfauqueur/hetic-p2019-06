@@ -56,8 +56,6 @@ switch (pathname) {
         style: {
           width: '0px',
           height: '0px',
-          marginLeft: '20px',
-          marginRight: '20px',
         },
         time: 100,
       },
