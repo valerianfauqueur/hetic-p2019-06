@@ -32,7 +32,8 @@ export default class InputSlider {
 
     // Display the number on another element
     if (elDisplay !== false) {
-      this.elDisplay = elDisplay.firstChild;
+      this.elDisplay = elDisplay.firstElementChild;
+      console.log(this.elDisplay);
     } else {
       this.elDisplay = false;
     }
@@ -115,7 +116,7 @@ export default class InputSlider {
     });
 
     // Drag touch event
-    document.addEventListener('touchstart', (e) => {
+    this.el.addEventListener('touchstart', (e) => {
       e.preventDefault();
       this.lastMousePos.y = e.changedTouches[0].pageY;
       this.lastMousePos.x = e.changedTouches[0].pageX;
