@@ -1,8 +1,8 @@
 .survey {
   width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: white;
   font-family: "Lato", Arial, sans-serif;
@@ -25,8 +25,8 @@
   }
 
   .survey__introductionDescription {
-    font-size: 1rem;
     margin: 1rem 0;
+    font-size: 1rem;
   }
 }
 
@@ -40,30 +40,30 @@
   overflow: hidden;
 
   .survey__questionTitle {
-    font-family: "Helvetica", sans-serif;
-    font-size: 1.75rem;
-    font-weight: bold;
     flex:1;
     display: flex;
     align-items: center;
+    font-family: "Helvetica", sans-serif;
+    font-size: 1.75rem;
+    font-weight: bold;
   }
 
   .survey__questionTitle::before {
-    content:"";
     width:2rem;
-    border: 2px solid #50e3c2;
+    content: '';
     margin-right: 1rem;
+    border: 2px solid #50e3c2;
   }
 
   .survey__questionValidation {
-    align-self: center;
     height: 19vh;
     width: 19vh;
+    align-self: center;
+    position: relative;
+    bottom: -3vh;
     background-color: #50e3c2;
     border-radius: 50%;
     color: white;
-    position: relative;
-    bottom:-3vh;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
 
@@ -73,16 +73,16 @@
 }
 
 .survey__questionAnswer {
-  width:100%;
-  flex:4;
+  flex: 4;
+  width: 100%;
   display: flex;
-  align-self: center;
   flex-direction: row;
   justify-content: center;
+  align-self: center;
 
   .survey__questionAnswerInputs {
-    align-self: center;
     display: flex;
+    align-self: center;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
@@ -95,8 +95,8 @@
   }
 
   .survey__questionAnswerUnit {
+    width: 0;
     align-self: center;
-    width:0;
   }
 }
 
@@ -121,9 +121,9 @@
   }
 
   .survey__questionAnswerUnit {
+    margin-left: 0.5rem;
     font-size: 3rem;
     font-weight: bold;
-    margin-left: 0.5rem;
   }
 }
 
@@ -133,23 +133,23 @@
 .survey__question--height {
 
   .survey__questionAnswerPointer {
-    flex:1;
-    height:0.5vh;
+    height: 0.5vh;
+    flex: 1;
     align-self: center;
-    margin-right:1rem;
+    margin-right: 1rem;
     hr {
-      border: 2px solid #50e3c2;
-      width:5rem;
+      width: 5rem;
       margin-left: auto;
+      border: 2px solid #50e3c2;
     }
   }
   .survey__questionAnswerInputs {
-    flex:0;
+    flex: 0;
   }
   .survey__questionAnswerInput {
+    line-height: 1.1;
     font-size: 2rem;
     opacity: 0.75;
-    line-height: 1.1;
   }
 
   .survey__questionAnswerInput--selected {
@@ -167,10 +167,10 @@
   }
 
   .survey__questionAnswerUnit {
-    flex:1;
+    flex: 1;
+    margin-left: 1rem;
     font-size: 2rem;
     font-weight: bold;
-    margin-left: 1rem;
   }
 }
 
@@ -185,35 +185,35 @@
   }
 
   .survey__questionAnswerDisplay {
-    flex:1;
+    flex: 1;
     display: flex;
-    align-items: flex-end;
     justify-content: center;
+    align-items: flex-end;
     font-size: 3rem;
     font-weight: bold;
   }
   .survey__questionAnswerInputs {
-    flex:2;
+    flex: 2;
     flex-direction: row;
     align-items: center;
   }
 
   .survey__questionAnswerInput {
-    margin: 0 0.33rem;
-    width:0.5rem;
+    width: 0.5rem;
     height: 50%;
+    margin: 0 0.33rem;
     background-color: black;
   }
 
   .survey__questionAnswerInput--selected {
-    background-color: #50e3c2;
     height: 90%;
+    background-color: #50e3c2;
   }
 
   .survey__questionAnswerUnit {
+    align-self: flex-end;
+    margin-left: 1rem;
     font-size: 3rem;
     font-weight: bold;
-    margin-left: 1rem;
-    align-self: flex-end;
   }
 }
