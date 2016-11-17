@@ -1,203 +1,219 @@
 .survey {
-  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   background-color: white;
+  font-family: "Lato", Arial, sans-serif;
+  font-size: 1rem;
+}
 
-  .survey__header, .survey__footer {
-    width: 95%;
+.survey__introduction {
+  width: 95%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+
+  .survey__introductionTitle {
+    font-family: "Helvetica", sans-serif;
+    font-size: 1.75rem;
+    font-weight: bold;
+  }
+
+  .survey__introductionDescription {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+}
+
+.survey__question {
+  height:100vh;
+  width:95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+
+  .survey__questionTitle {
+    font-family: "Helvetica", sans-serif;
+    font-size: 1.75rem;
+    font-weight: bold;
+    flex:1;
+    display: flex;
+    align-items: center;
+  }
+
+  .survey__questionTitle::before {
+    content:"";
+    width:2rem;
+    border: 2px solid #50e3c2;
+    margin-right: 1rem;
+  }
+
+  .survey__questionValidation {
+    align-self: center;
+    height: 19vh;
+    width: 19vh;
+    background-color: #50e3c2;
+    border-radius: 50%;
+    color: white;
+    position: relative;
+    bottom:-3vh;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+
+  .survey__questionValidationIcon {
+    font-size: 3rem;
+  }
+}
+
+.survey__questionAnswer {
+  width:100%;
+  flex:4;
+  display: flex;
+  align-self: center;
+  flex-direction: row;
+  justify-content: center;
+
+  .survey__questionAnswerInputs {
+    align-self: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
 
-  .survey__header {
-    .survey__logo {
-      height: 15vh;
-      width: 100%;
-      margin-bottom: 10px;
-      margin-top: 10px;
-      background-image: url('../img/logo-improve--black.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size:contain;
-    }
-
-    .survey__question {
-      height: 60%;
-      margin-bottom: 10px;
-      font-family: "Helvetica", sans-serif;
-      font-size: 1.75rem;
-      font-weight: bold;
-    }
-
-    .survey__question__description {
-      font-family: "Lato", Arial, sans-serif;
-      font-size: 1rem;
-    }
-
-    .survey__skip {
-      height: auto;
-      display: flex;
-      align-self: flex-end;
-      justify-content: center;
-      align-items: center;
-      padding-left: 16px;
-      margin-top: 10px;
-      background-color: black;
-      color: white;
-      border-radius: 5px;
-      font-family: "Lato", Arial, sans-serif;
-
-      .survey__skip__icon {
-        color:white;
-        font-size: 36px;
-      }
-    }
+  .survey__questionAnswerInput {
+    text-align: center;
+    font-size: 1.5rem;
+    transition: all 0.1s linear;
   }
 
-  .survey__body {
-    width:95%;
+  .survey__questionAnswerUnit {
+    align-self: center;
+    width:0;
+  }
+}
+
+/*
+  ********************************* QUESTION AGE
+**/
+.survey__question--age {
+  .survey__questionAnswerInput {
+    font-size: 2rem;
+    opacity: 0.75;
+  }
+
+  .survey__questionAnswerInput--selected {
+    font-size: 3rem;
+    font-weight: bold;
+    opacity: 1;
+  }
+
+  .survey__questionAnswerInput:first-child, .survey__questionAnswerInput:last-child  {
+    font-size: 1.5rem;
+    opacity: 0.5;
+  }
+
+  .survey__questionAnswerUnit {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+  }
+}
+
+/*
+  ********************************* QUESTION HEIGHT
+**/
+.survey__question--height {
+
+  .survey__questionAnswerPointer {
+    flex:1;
+    height:0.5vh;
+    align-self: center;
+    margin-right:1rem;
+    hr {
+      border: 2px solid #50e3c2;
+      width:5rem;
+      margin-left: auto;
+    }
+  }
+  .survey__questionAnswerInputs {
+    flex:0;
+  }
+  .survey__questionAnswerInput {
+    font-size: 2rem;
+    opacity: 0.75;
+    line-height: 1.1;
+  }
+
+  .survey__questionAnswerInput--selected {
+    font-size: 2.25rem;
+    font-weight: bold;
+    opacity: 1;
+  }
+
+  .survey__questionAnswerInput:first-child, .survey__questionAnswerInput:last-child  {
+    opacity: 0.25;
+  }
+
+  .survey__questionAnswerInput:nth-child(2), .survey__questionAnswerInput:nth-child(3), .survey__questionAnswerInput:nth-last-child(2),  .survey__questionAnswerInput:nth-last-child(3) {
+    opacity: 0.5;
+  }
+
+  .survey__questionAnswerUnit {
+    flex:1;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 1rem;
+  }
+}
+
+/*
+  ********************************* QUESTION WEIGHT
+**/
+
+.survey__question--weight {
+
+  .survey__questionAnswer {
+    flex-direction: column;
+  }
+
+  .survey__questionAnswerDisplay {
+    flex:1;
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  .survey__questionAnswerInputs {
+    flex:2;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    font-family: "Lato", Arial, sans-serif;
-    flex: 1;
-
-    /**
-      SURVEY AGE
-    */
-
-    .survey__age .age__input:first-child, .survey__age .age__input:last-child {
-      font-size: 1.5rem;
-      opacity: 0.5;
-    }
-
-    .survey__age .age__input {
-      text-align: center;
-      transition: all 0.1s linear;
-      font-size: 2rem;
-      opacity: 0.75;
-    }
-
-    .survey__age .age__input--selected {
-      font-size: 3rem;
-      font-weight: bold;
-      opacity: 1;
-    }
-
-    .survey__unit {
-      width: 0;
-      align-self: center;
-      margin-left: 10px;
-    }
-
-    .survey__unit--age {
-      font-size: 3rem;
-      font-weight: bold;
-    }
-
-    /**
-      SURVEY HEIGHT
-    */
-
-    .survey__unit--height {
-      font-size: 1.25rem;
-      font-weight: bold;
-    }
-
-    .survey__unit__indicator {
-      width: 20%;
-      height: 0.5vh;
-      background-color: #50e3c2;
-      align-self: center;
-      margin-right: 10px;
-    }
-
-    .survey__height {
-      .height__input {
-        text-align: center;
-        transition: all 0.1s linear;
-        font-size: 1.25rem;
-        opacity: 0.75;
-        line-height: 1.1;
-      }
-
-      .height__input:first-child, .height__input:last-child {
-        opacity: 0.25;
-      }
-
-      .height__input:nth-child(2), .height__input:nth-child(3), .height__input:nth-last-child(2),  .height__input:nth-last-child(3) {
-        opacity: 0.5;
-      }
-
-      .height__input--selected {
-        font-size: 1.25rem;
-        opacity: 1;
-        font-weight: bold;
-      }
-    }
-
-    /**
-      SURVEY WEIGHT
-    */
-
-    .survey__weight__display {
-      font-size: 2rem;
-      font-weight: bold;
-      width:100%;
-      height: 20%;
-      display: flex;
-      align-items: flex-end;;
-      justify-content: center;
-    }
-
-    .survey__unit--weight {
-      align-self: flex-end;
-    }
-
-    .survey__weight {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 70%;
-
-      .weight__input {
-        margin: 0 1.5vw;
-        width:1.25vw;
-        height: 50%;
-        background-color: black;
-        transition: all 0.1s linear;
-      }
-
-      .weight__input--selected {
-        background-color: #50e3c2;
-        height: 90%;
-      }
-    }
   }
 
-  .survey__footer {
-    height:20vh;
-    .survey__validate {
-      height: 20vh;
-      width: 20vh;
-      background-color: black;
-      border-radius: 50%;
-      color: white;
-      position: absolute;
-      bottom:-4vh;
+  .survey__questionAnswerInput {
+    margin: 0 0.33rem;
+    width:0.5rem;
+    height: 50%;
+    background-color: black;
+  }
 
-      .survey__validate__icon {
-        font-size: 3rem;
-      }
-    }
+  .survey__questionAnswerInput--selected {
+    background-color: #50e3c2;
+    height: 90%;
+  }
+
+  .survey__questionAnswerUnit {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    align-self: flex-end;
   }
 }
