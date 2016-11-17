@@ -11,7 +11,7 @@ A powerfull chip that's using machine learning to help you get better | School P
 First clone the repository and install the dependencies:
 
 ```shell
-$ git clone https://github.com/valerianfauqueur/hetic-p2019-06.git
+$ git clone -b dev https://github.com/valerianfauqueur/hetic-p2019-06.git  # Project is currently in developpement so clone the branch dev
 $ cd hetic-p2019-06
 $ npm i                        
 ```
