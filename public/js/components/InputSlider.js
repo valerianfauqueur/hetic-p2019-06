@@ -33,7 +33,6 @@ export default class InputSlider {
     // Display the number on another element
     if (elDisplay !== false) {
       this.elDisplay = elDisplay.firstElementChild;
-      console.log(this.elDisplay);
     } else {
       this.elDisplay = false;
     }
