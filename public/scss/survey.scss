@@ -6,7 +6,7 @@
   align-items: center;
   background-color: white;
   font-family: "Lato", Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .survey__introduction {
@@ -20,12 +20,12 @@
 
 .survey__introductionTitle {
   font-family: "Helvetica", sans-serif;
-  font-size: 1.75rem;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .survey__introductionDescription {
-  margin: 1rem 0;
+  margin: 10px 0;
   font-size: 1rem;
 }
 
@@ -44,13 +44,13 @@
   display: flex;
   align-items: center;
   font-family: "Helvetica", sans-serif;
-  font-size: 1.75rem;
+  font-size: 24px;
   font-weight: bold;
 
   &::before {
-    width:2rem;
+    width:30px;
     content: '';
-    margin-right: 1rem;
+    margin-right: 10px;
     border: 2px solid #50e3c2;
   }
 }
@@ -69,7 +69,7 @@
 }
 
 .survey__questionValidationIcon {
-  font-size: 3rem;
+  font-size: 36px;
 }
 
 
@@ -92,7 +92,7 @@
 
 .survey__questionAnswerInput {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 16px;
   transition: all 0.1s linear;
 }
 
@@ -106,24 +106,24 @@
 **/
 .survey__question--age {
   .survey__questionAnswerInput {
-    font-size: 2rem;
+    font-size: 36px;
     opacity: 0.75;
   }
 
   .survey__questionAnswerInput--selected {
-    font-size: 3rem;
+    font-size: 48px;
     font-weight: bold;
     opacity: 1;
   }
 
   .survey__questionAnswerInput:first-child, .survey__questionAnswerInput:last-child  {
-    font-size: 1.5rem;
+    font-size: 24px;
     opacity: 0.5;
   }
 
   .survey__questionAnswerUnit {
-    margin-left: 0.5rem;
-    font-size: 3rem;
+    margin-left: 10px;
+    font-size: 36px;
     font-weight: bold;
   }
 }
@@ -134,12 +134,12 @@
 .survey__question--height {
 
   .survey__questionAnswerPointer {
-    height: 0.5vh;
+    height: 5px;
     flex: 1;
     align-self: center;
-    margin-right: 1rem;
+    transform: translateX(-20px);
     hr {
-      width: 5rem;
+      width: 60px;
       margin-left: auto;
       border: 2px solid #50e3c2;
     }
@@ -149,7 +149,7 @@
   }
   .survey__questionAnswerInput {
     line-height: 1.1;
-    font-size: 2rem;
+    font-size: 24px;
     opacity: 0.75;
 
     &:nth-child(-n+3), &:nth-last-child(-n+3) {
@@ -162,7 +162,7 @@
   }
 
   .survey__questionAnswerInput--selected {
-    font-size: 2.25rem;
+    font-size: 36px;
     font-weight: bold;
     opacity: 1;
   }
@@ -190,7 +190,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    font-size: 3rem;
+    font-size: 36px;
     font-weight: bold;
   }
   .survey__questionAnswerInputs {
@@ -200,9 +200,9 @@
   }
 
   .survey__questionAnswerInput {
-    width: 0.5rem;
+    width: 5px;
     height: 50%;
-    margin: 0 0.33rem;
+    margin: 0 5px;
     background-color: black;
   }
 
@@ -214,7 +214,7 @@
   .survey__questionAnswerUnit {
     align-self: flex-end;
     margin-left: 1rem;
-    font-size: 3rem;
+    font-size: 36px;
     font-weight: bold;
   }
 }
