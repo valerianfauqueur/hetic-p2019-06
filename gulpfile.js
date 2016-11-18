@@ -2,6 +2,7 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   sync = require('browser-sync').create(),
   postcss = require('gulp-postcss'),
+  pxtorem = require('postcss-pxtorem'),
   autoprefixer = require('autoprefixer'),
   nodemon = require('gulp-nodemon'),
   runSequence = require('run-sequence'),
@@ -13,6 +14,7 @@ var gulp = require('gulp'),
 
 var processors = [
   autoprefixer,
+  pxtorem,
 ];
 
 var dirs = {
