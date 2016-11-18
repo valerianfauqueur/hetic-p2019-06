@@ -33,7 +33,7 @@ dirs.serverJs = dirs.app;
 dirs.views = dirs.app + 'views';
 
 gulp.task('scss', function() {
-  return gulp.src(dirs.scss + '/**/*.scss')
+  return gulp.src(dirs.scss + '/main.scss')
     .pipe(plumber())
     .pipe(sass())
     .pipe(postcss(processors))
