@@ -64,12 +64,26 @@ if (pathname === '/') {
   const profileInputsContainer = document.querySelector('.survey .survey__question--profile .survey__questionAnswerInputs');
   const profileEvent = new Hammer.Manager(profileInputsContainer);
 
-  const Tap = new Hammer.Tap();
-  profileEvent.add(Tap);
+  const profileTap = new Hammer.Tap();
+  profileEvent.add(profileTap);
   // switch selected el
   profileEvent.on('tap', (e) => {
     if (!e.target.classList.contains('.survey__questionAnswerInput--selected')) {
       profileInputsContainer.querySelector('.survey__questionAnswerInput--selected').classList.remove('survey__questionAnswerInput--selected');
+      e.target.classList.add('survey__questionAnswerInput--selected');
+    }
+  }, true);
+
+  // Handle input selection for smoking
+  const smokeInputsContainer = document.querySelector('.survey .survey__question--profile .survey__questionAnswerInputs--smoke');
+  const smokeEvent = new Hammer.Manager(smokeInputsContainer);
+  const smokeTap = new Hammer.Tap();
+
+  smokeEvent.add(smokeTap);
+  // switch selected el
+  smokeEvent.on('tap', (e) => {
+    if (!e.target.classList.contains('.survey__questionAnswerInput--selected')) {
+      smokeInputsContainer.querySelector('.survey__questionAnswerInput--selected').classList.remove('survey__questionAnswerInput--selected');
       e.target.classList.add('survey__questionAnswerInput--selected');
     }
   }, true);
