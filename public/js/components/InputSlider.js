@@ -102,7 +102,9 @@ export default class InputSlider {
       window.removeEventListener('mousewheel', this.scrollBinded);
     });
 
-    // Initiliase touch ans mouse pan on container
+    this.el.addEventListener('dragstart', e => e.preventDefault(), true);
+
+    // Initiliase touch and mouse pan on container
     this.mc = new Hammer.Manager(this.el);
     const Pan = new Hammer.Pan();
     this.mc.add(Pan);
