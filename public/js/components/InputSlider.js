@@ -111,7 +111,7 @@ export default class InputSlider {
     // Take the velocity in order to create inertia effect
     this.mc.on('panend', (e) => {
       const velocity = Math.abs(e.velocity);
-      if (velocity > 0.1) {
+      if (velocity > 0.3) {
         for (let i = 0, a = 1; i < velocity; i += 0.1, a += 1) {
           setTimeout(() => this.scroll(this.lastScrollDirection), 25 * a);
         }
