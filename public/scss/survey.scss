@@ -243,3 +243,37 @@
     font-weight: bold;
   }
 }
+
+/*
+  ********************************* QUESTION WEIGHT
+**/
+
+.survey__question--profile {
+
+  .survey__questionAnswerInputs {
+    align-items: center;
+    cursor: default;
+  }
+
+  .survey__questionAnswerInput {
+    font-size:24px;
+    cursor: pointer;
+    line-height: 2;
+  }
+
+  .survey__questionAnswerInput--selected {
+    display: flex;
+    align-items: center;
+    font-size:36px;
+    cursor: pointer;
+
+    &::before, &::after {
+      width:30px;
+      margin:0 10px;
+      height: 2px;
+      content: '';
+      border: 2px solid $accentColor;
+    }
+  }
+
+}
