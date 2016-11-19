@@ -1,3 +1,5 @@
+import Hammer from 'hammerjs';
+
 export default class InputSlider {
 
   constructor(el, elClass, initValues, selected, increment = 1, direction = 'y', animation = { style: {}, time: 0 }, display = true, elDisplay = false) {
@@ -63,15 +65,15 @@ export default class InputSlider {
           // Apply template of an input depeding on  initialization params
           if (this.selected === index) {
             if (this.displayNumber === true) {
-              tmpDiv.innerHTML = `<div data-value="${value}" class="${this.elClass} ${this.elClass}--selected">${value}</div>`;
+              tmpDiv.innerHTML = `<div style="pointer-events: none;" data-value="${value}" class="${this.elClass} ${this.elClass}--selected">${value}</div>`;
             } else {
-              tmpDiv.innerHTML = `<div data-value="${value}" class="${this.elClass} ${this.elClass}--selected"></div>`;
+              tmpDiv.innerHTML = `<div style="pointer-events: none;" data-value="${value}" class="${this.elClass} ${this.elClass}--selected"></div>`;
             }
           } else if (this.selected !== index) {
             if (this.displayNumber === true) {
-              tmpDiv.innerHTML = `<div data-value="${value}" class="${this.elClass}">${value}</div>`;
+              tmpDiv.innerHTML = `<div style="pointer-events: none;" data-value="${value}" class="${this.elClass}">${value}</div>`;
             } else if (this.displayNumber === false) {
-              tmpDiv.innerHTML = `<div data-value="${value}" class="${this.elClass}"></div>`;
+              tmpDiv.innerHTML = `<div style="pointer-events: none;" data-value="${value}" class="${this.elClass}"></div>`;
             }
           }
           // return a DOM element corresponding to an input line
@@ -89,7 +91,7 @@ export default class InputSlider {
   */
   initEvent() {
     // Bind the correct context to the event
-    this.scrollBinded = this.scroll.bind(this);
+    this.scrollBinded = this.scrollEv.bind(this);
 
     // Fire a wheel scroll only if the mouse is on the element
     this.el.addEventListener('mouseenter', () => {
@@ -100,84 +102,64 @@ export default class InputSlider {
       window.removeEventListener('mousewheel', this.scrollBinded);
     });
 
-    // Drag mouse event
-    this.el.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      this.lastMousePos.y = e.pageY;
-      this.lastMousePos.x = e.pageX;
-      window.addEventListener('mousemove', this.scrollBinded);
-    });
-
-    window.addEventListener('mouseup', () => {
-      this.lastMousePos.y = 0;
-      this.lastMousePos.x = 0;
-      window.removeEventListener('mousemove', this.scrollBinded);
-    });
-
-    // Drag touch event
-    this.el.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      this.lastMousePos.y = e.changedTouches[0].pageY;
-      this.lastMousePos.x = e.changedTouches[0].pageX;
-      window.addEventListener('touchmove', this.scrollBinded);
-    });
-
-    window.addEventListener('touchend', () => {
-      this.lastMousePos.y = 0;
-      this.lastMousePos.x = 0;
-      window.removeEventListener('touchmove', this.scrollBinded);
-    });
+    // Initiliase touch ans mouse pan on container
+    this.mc = new Hammer.Manager(this.el);
+    const Pan = new Hammer.Pan();
+    this.mc.add(Pan);
+    this.mc.on('pan', this.scrollBinded, true);
   }
 
   // Fire the correct direction scroll depending on the event
-  scroll(e) {
+  scrollEv(e) {
     e.preventDefault();
     // If we scroll up or down fire the correct event
     if (e.type === 'mousewheel') {
       if (e.wheelDelta > 0) {
-        this.scrollUp();
+        this.scroll('up');
       } else if (e.wheelDelta < 0) {
-        this.scrollDown();
+        this.scroll('down');
       }
-    } else if (e.type === 'mousemove' || e.type === 'touchmove') {
+    } else if (e.type === 'pan') {
       // Compare last position and current pos of mouse to trigger or not a scroll
       let mouseDif;
-      let posX;
-      let posY;
-
-      // Choose the correct value depending on mobile or desktop event
-      if (e.type === 'mousemove') {
-        posX = e.pageX;
-        posY = e.pageY;
-      } else if (e.type === 'touchmove') {
-        posX = e.changedTouches[0].pageX;
-        posY = e.changedTouches[0].pageY;
-      }
+      const posX = e.changedPointers[0].pageX;
+      const posY = e.changedPointers[0].pageY;
 
       // Compare the difference between last position and current depending on the choosen axis
-      if (this.direction === 'x') {
+      if (this.direction === 'x' && (e.additionalEvent === 'panleft' || e.additionalEvent === 'panright')) {
         mouseDif = posX - this.lastMousePos.x;
-      } else if (this.direction === 'y') {
+      } else if (this.direction === 'y' && (e.additionalEvent === 'panup' || e.additionalEvent === 'pandown')) {
         mouseDif = posY - this.lastMousePos.y;
       }
       // If the difference is high enough trigger a scroll up or down
       if (mouseDif < -20) {
-        this.scrollUp();
+        this.scroll('up');
         this.lastMousePos.y = posY;
         this.lastMousePos.x = posX;
       } else if (mouseDif > 20) {
-        this.scrollDown();
+        this.scroll('down');
         this.lastMousePos.y = posY;
         this.lastMousePos.x = posX;
       }
     }
   }
 
-  // DOM manipulation for scrollUp
-  scrollUp() {
+  // DOM manipulation for scroll
+  scroll(direction) {
     const scrollElems = this.el.getElementsByClassName(this.elClass);
     const selectedEl = this.el.querySelector(`.${this.elClass}--selected`);
-    const nextSelectedEl = selectedEl.previousSibling;
+
+    // Select the correct element
+    let nextSelectedEl;
+    const lastInput = scrollElems[scrollElems.length - 1];
+    const firstInput = scrollElems[0];
+
+    if (direction === 'up') {
+      nextSelectedEl = selectedEl.previousSibling;
+    } else if (direction === 'down') {
+      nextSelectedEl = selectedEl.nextSibling;
+    }
+
     // Change the selected el
     selectedEl.classList.remove(`${this.elClass}--selected`);
     nextSelectedEl.classList.add(`${this.elClass}--selected`);
@@ -187,59 +169,43 @@ export default class InputSlider {
       this.elDisplay.innerHTML = nextSelectedEl.dataset.value;
     }
 
-    // Create a new input
-    const insertedEl = this.createInputs(
-      [parseFloat(scrollElems[0].dataset.value, 10) - this.increment]
-    )[0];
-
-    // Apply style that will be animated to before animation values
-    Object.assign(insertedEl.style, this.animation.style);
-
-    // Prepend the new input
-    this.el.insertBefore(
-      insertedEl,
-      this.el.firstElementChild
-    );
-
-    // Animate apparition of the input with css
-    setTimeout(() => { insertedEl.style = ''; }, this.animation.time);
-
-    // Remove last input animated
-    Object.assign(scrollElems[scrollElems.length - 1].style, this.animation.style);
-    setTimeout(() => scrollElems[scrollElems.length - 1].remove(), this.animation.time);
-  }
-
-  // DOM manipulation for scrollDown
-  scrollDown() {
-    const scrollElems = this.el.getElementsByClassName(this.elClass);
-    const selectedEl = this.el.querySelector(`.${this.elClass}--selected`);
-    const nextSelectedEl = selectedEl.nextSibling;
-
-    // Change the selected el
-    selectedEl.classList.remove(`${this.elClass}--selected`);
-    nextSelectedEl.classList.add(`${this.elClass}--selected`);
-
-    // if we need to display the current value on another element
-    if (this.elDisplay !== false) {
-      this.elDisplay.innerText = nextSelectedEl.dataset.value;
+    // Create a new input depending on the scroll direction
+    let insertedEl;
+    if (direction === 'up') {
+      insertedEl = this.createInputs(
+        [parseFloat(firstInput.dataset.value, 10) - this.increment]
+      )[0];
+    } else if (direction === 'down') {
+      insertedEl = this.createInputs(
+        [parseFloat(lastInput.dataset.value, 10) + this.increment]
+      )[0];
     }
 
-    // Create a new input
-    const insertedEl = this.createInputs(
-      [parseFloat(scrollElems[scrollElems.length - 1].dataset.value, 10) + this.increment]
-    )[0];
-
     // Apply style that will be animated to before animation values
     Object.assign(insertedEl.style, this.animation.style);
 
-    // Append the new input in last position
-    this.el.appendChild(insertedEl);
+    if (direction === 'up') {
+      // Prepend the new input
+      this.el.insertBefore(
+        insertedEl,
+        this.el.firstElementChild
+      );
+    } else if (direction === 'down') {
+      // Append the new input in last position
+      this.el.appendChild(insertedEl);
+    }
 
     // Animate apparition of the input with css
-    setTimeout(() => { insertedEl.style = ''; }, this.animation.time);
+    setTimeout(() => { insertedEl.style = ''; insertedEl.style.pointerEvents = 'none'; }, this.animation.time);
 
-    // Remove first input
-    Object.assign(scrollElems[0].style, this.animation.style);
-    setTimeout(() => scrollElems[0].remove(), this.animation.time);
+    if (direction === 'up') {
+      // Remove last input animated
+      Object.assign(scrollElems[scrollElems.length - 1].style, this.animation.style);
+      setTimeout(() => scrollElems[scrollElems.length - 1].remove(), this.animation.time);
+    } else if (direction === 'down') {
+      // Remove first input animated
+      Object.assign(scrollElems[0].style, this.animation.style);
+      setTimeout(() => scrollElems[0].remove(), this.animation.time);
+    }
   }
 }
