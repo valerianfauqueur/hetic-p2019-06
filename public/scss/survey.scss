@@ -105,17 +105,25 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+  cursor: grab;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .survey__questionAnswerInput {
   text-align: center;
   font-size: 16px;
   transition: all 0.1s linear;
+  user-select:none;
 }
 
 .survey__questionAnswerUnit {
   width: 0;
   align-self: center;
+  user-select: none;
 }
 
 /*
