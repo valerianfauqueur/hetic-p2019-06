@@ -1,3 +1,4 @@
+import Hammer from 'hammerjs';
 import InputSlider from '../components/InputSlider';
 
 const pathname = window.location.pathname;
@@ -58,4 +59,18 @@ if (pathname === '/') {
     false,
     weightDisplay
   );
+
+  // Handle input selection for sport profile
+  const profileInputsContainer = document.querySelector('.survey .survey__question--profile .survey__questionAnswerInputs');
+  const profileEvent = new Hammer.Manager(profileInputsContainer);
+
+  const Tap = new Hammer.Tap();
+  profileEvent.add(Tap);
+  // switch selected el
+  profileEvent.on('tap', (e) => {
+    if (!e.target.classList.contains('.survey__questionAnswerInput--selected')) {
+      profileInputsContainer.querySelector('.survey__questionAnswerInput--selected').classList.remove('survey__questionAnswerInput--selected');
+      e.target.classList.add('survey__questionAnswerInput--selected');
+    }
+  }, true);
 }
