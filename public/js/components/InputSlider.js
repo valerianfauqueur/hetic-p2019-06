@@ -107,6 +107,16 @@ export default class InputSlider {
     const Pan = new Hammer.Pan();
     this.mc.add(Pan);
     this.mc.on('pan', this.scrollBinded, true);
+
+    // Take the velocity in order to create inertia effect
+    this.mc.on('panend', (e) => {
+      const velocity = Math.abs(e.velocity);
+      if (velocity > 0.1) {
+        for (let i = 0, a = 1; i < velocity; i += 0.1, a += 1) {
+          setTimeout(() => this.scroll(this.lastScrollDirection), 25 * a);
+        }
+      }
+    }, true);
   }
 
   // Fire the correct direction scroll depending on the event
@@ -207,5 +217,7 @@ export default class InputSlider {
       Object.assign(scrollElems[0].style, this.animation.style);
       setTimeout(() => scrollElems[0].remove(), this.animation.time);
     }
+
+    this.lastScrollDirection = direction;
   }
 }
