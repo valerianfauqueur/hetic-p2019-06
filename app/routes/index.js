@@ -27,3 +27,10 @@ app.get('/survey/question-3', (req, res) => {
     page: 'weight',
   });
 });
+
+app.get('/product', (req, res) => {
+  res.render('index', {
+    pageTitle: 'Improve - Product',
+    page: 'product',
+  });
+});
