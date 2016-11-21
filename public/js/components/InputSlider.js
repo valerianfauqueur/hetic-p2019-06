@@ -2,12 +2,22 @@ import Hammer from 'hammerjs';
 
 export default class InputSlider {
 
-  constructor(el, elClass, initValues, selected, increment = 1, direction = 'y', animation = { style: {}, time: 0 }, display = true, elDisplay = false) {
+  constructor(el, elClass, eventEl, initValues, selected, increment = 1, direction = 'y', animation = { style: {}, time: 0 }, display = true, elDisplay = false) {
     // The element that will contain our inputs
     this.el = el;
 
     // The class we want on our inputs
     this.elClass = elClass;
+
+
+    // Element we will listen event on
+
+    if (eventEl === false) {
+      // If there is container for the events we take the input container
+      this.eventEl = this.el;
+    }
+    // If there is a container for the events we take it
+    this.eventEl = eventEl;
 
     // Value of incrementation when scrolling
     this.increment = increment;
@@ -94,18 +104,18 @@ export default class InputSlider {
     this.scrollBinded = this.scrollEv.bind(this);
 
     // Fire a wheel scroll only if the mouse is on the element
-    this.el.addEventListener('mouseenter', () => {
+    this.eventEl.addEventListener('mouseenter', () => {
       window.addEventListener('mousewheel', this.scrollBinded);
     });
 
-    this.el.addEventListener('mouseleave', () => {
+    this.eventEl.addEventListener('mouseleave', () => {
       window.removeEventListener('mousewheel', this.scrollBinded);
     });
 
-    this.el.addEventListener('dragstart', e => e.preventDefault(), true);
+    this.eventEl.addEventListener('dragstart', e => e.preventDefault(), true);
 
     // Initiliase touch and mouse pan on container
-    this.mc = new Hammer.Manager(this.el);
+    this.mc = new Hammer.Manager(this.eventEl);
     const Pan = new Hammer.Pan();
     this.mc.add(Pan);
     this.mc.on('pan', this.scrollBinded, true);
