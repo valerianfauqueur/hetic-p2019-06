@@ -48,8 +48,8 @@ if (pathname === '/') {
     heightInputsContainer,
     'survey__questionAnswerInput',
     heightEventContainer,
-    [165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175],
-    5,
+    [166, 167, 168, 169, 170, 171, 172, 173, 174],
+    4,
     1,
     'y',
     {
@@ -68,10 +68,10 @@ if (pathname === '/') {
     weightInputsContainer,
     'survey__questionAnswerInput',
     weightEventContainer,
-    [49.5, 50, 50.5, 51, 51.5, 52, 52.5, 53.5, 54, 54.5, 55,
-      55.5, 56, 56.5, 57, 57.5, 58, 58.5, 59, 59.5, 60],
+    [49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+      60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
     10,
-    0.5,
+    1,
     'x',
     {
       style: {
