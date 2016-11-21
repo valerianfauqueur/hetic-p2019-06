@@ -1,5 +1,7 @@
 .survey {
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,16 +11,25 @@
   font-size: 16px;
   background-color: white;
   color:black;
+  position: relative;
 }
 
 .survey__introduction {
   width: 75%;
   height: 100vh;
+  position: absolute;
+  top:0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  transition: all 0.4s ease-in;
+  transform: translateY(0);
+
+  &--over {
+    transform: translateY(100vh);
+  }
 }
 
 .survey__introductionTitle {
@@ -49,11 +60,30 @@
 .survey__question {
   height: 100vh;
   width:95%;
+  position: absolute;
+  top:0vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(100vh);
+  transition: 0.4s ease-in;
+
+  &--current {
+    position: initial;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:nth-child(-n+3) {
+    cursor: n-resize;
+  }
+
+  &:nth-child(4) {
+    cursor: e-resize;
+  }
 }
 
 .survey__questionTitle {
@@ -86,6 +116,7 @@
 }
 
 .survey__questionValidationIcon {
+  pointer-events: none;
   font-size: 36px;
 }
 
@@ -105,12 +136,7 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  cursor: grab;
   user-select: none;
-
-  &:active {
-    cursor: grabbing;
-  }
 }
 
 .survey__questionAnswerInput {
