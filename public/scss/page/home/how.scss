@@ -1,0 +1,59 @@
+.how {
+  width:100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.how__title {
+  width:100%;
+  height: 12vh;
+  font-family: "Helvetica neue", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $siteHPcolor;
+
+  &::before {
+    content:'IMPRO+VE';
+    color: #EFEFEF;
+    font-size: 60px;
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+.slider {
+  height: 35vh;
+  width:100%;
+  background-color:  $siteHPcolor;
+}
+
+.how__sep {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+
+  .plusIcon {
+    &__horizontalBar {
+      width: 6px;
+      margin-left: -3px;
+    }
+
+    &__verticalBar {
+      height: 6px;
+      margin-top: -3px;
+    }
+  }
+}
+
+.how__explanationText {
+  height: 45vh;
+  font-family: "Source sans pro", Arial, sans-serif;
+  margin: 0 5vw;
+  overflow: scroll;
+}
