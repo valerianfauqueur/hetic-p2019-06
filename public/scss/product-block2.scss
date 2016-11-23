@@ -32,15 +32,16 @@
     font-weight: normal;
     background-image: url('/img/plus-improve--caracteristique.png');
     background-repeat: no-repeat;
-    background-position: 45px -5px;
+    background-position: 45px 3px;
     margin-bottom: 50px;
+    background-size: 60%;
     @include medium {
     	margin-top:150px;
     	font-size: 18px;
     	line-height: 25px;
-    	background-position: 355px -15px;
+    	background-position: 355px 4px;
     	background-size: 32%;
-    	padding-top: 25px;
+    	padding: 25px 180px;
     }
 }
 
@@ -98,6 +99,7 @@ hr{display:none;}
     	margin-top: 200px;
     	font-size: 18px;
     	line-height: 25px;
+    	margin-left: -210px;
 
     }
 }
