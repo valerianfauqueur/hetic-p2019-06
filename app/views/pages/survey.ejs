@@ -5,35 +5,44 @@
     <p class='survey__introductionDescription'>
       Préparez-vous à devenir meilleur
     </p>
-    <button class='survey__introductionCTA'>
-      C'est partis !
-    </button>
+    <button data-next='1' class='survey__introductionCTA'>C'est parti !</button>
   </section>
 
-  <article class='survey__question survey__question--age'>
-    <h2 class='survey__questionTitle'>Commençons par une question simple, quel est votre âge ?</h2>
+  <article data-question='1' class='survey__question survey__question--age'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>01</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Quel est votre âge ?</h2>
     <section class='survey__questionAnswer'>
       <div class='survey__questionAnswerInputs'></div>
       <div class='survey__questionAnswerUnit'>ans</div>
     </section>
-    <button class='survey__questionValidation'>
-      <i class="material-icons survey__questionValidationIcon">done</i>
-    </button>
+    <button data-next='2' class='survey__questionValidation'>Suivant</button>
   </article>
 
-  <article class='survey__question survey__question--height'>
+  <article  data-question='2' class='survey__question survey__question--height'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>02</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
     <h2 class='survey__questionTitle'>Quel est votre taille ?</h2>
     <section class='survey__questionAnswer'>
       <div class='survey__questionAnswerPointer'><hr></div>
       <div class='survey__questionAnswerInputs'></div>
       <div class='survey__questionAnswerUnit'>cm</div>
     </section>
-    <button class='survey__questionValidation'>
-      <i class="material-icons survey__questionValidationIcon">done</i>
-    </button>
+    <button data-next='3' class='survey__questionValidation'>Suivant</button>
   </article>
 
-  <article class='survey__question survey__question--weight'>
+  <article  data-question='3' class='survey__question survey__question--weight'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>03</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
     <h2 class='survey__questionTitle'>Quel est votre poids ?</h2>
     <section class='survey__questionAnswer'>
       <div class='survey__questionAnswerDisplay'>
@@ -42,13 +51,16 @@
       </div>
       <div class='survey__questionAnswerInputs'></div>
     </section>
-    <button class='survey__questionValidation'>
-      <i class="material-icons survey__questionValidationIcon">done</i>
-    </button>
+    <button data-next='4' class='survey__questionValidation'>Suivant</button>
   </article>
 
-  <article class='survey__question survey__question--profile'>
-    <h2 class='survey__questionTitle'>Quel type de sportif êtes-vous ?</h2>
+  <article  data-question='4' class='survey__question survey__question--profile'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>04</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Quel est votre profil sportif ?</h2>
     <section class='survey__questionAnswer'>
         <ul class='survey__questionAnswerInputs survey__questionAnswerInputs--sport'>
           <li class='survey__questionAnswerInput'>Athlète</li>
@@ -59,13 +71,16 @@
         </ul>
       </div>
     </section>
-    <button class='survey__questionValidation'>
-      <i class="material-icons survey__questionValidationIcon">done</i>
-    </button>
+    <button data-next='5' class='survey__questionValidation'>Suivant</button>
   </article>
 
-  <article class='survey__question survey__question--profile'>
-    <h2 class='survey__questionTitle'>Encore un petit effort ; Dernière question : êtes vous fumeur ?</h2>
+  <article data-question='5' class='survey__question survey__question--profile'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>05</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Êtes vous fumeur ?</h2>
     <section class='survey__questionAnswer'>
         <ul class='survey__questionAnswerInputs survey__questionAnswerInputs--smoke'>
           <li class='survey__questionAnswerInput survey__questionAnswerInput--selected'>Non</li>
@@ -73,8 +88,6 @@
         </ul>
       </div>
     </section>
-    <button class='survey__questionValidation'>
-      <i class="material-icons survey__questionValidationIcon">done</i>
-    </button>
+    <button data-next='6' class='survey__questionValidation'>Suivant</button>
   </article>
 </section>

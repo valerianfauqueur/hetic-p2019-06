@@ -7,23 +7,9 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/survey/question-1', (req, res) => {
+app.get('/home', (req, res) => {
   res.render('index', {
-    pageTitle: 'Improve - Survey',
-    page: 'age',
-  });
-});
-
-app.get('/survey/question-2', (req, res) => {
-  res.render('index', {
-    pageTitle: 'Improve - Survey',
-    page: 'height',
-  });
-});
-
-app.get('/survey/question-3', (req, res) => {
-  res.render('index', {
-    pageTitle: 'Improve - Survey',
-    page: 'weight',
+    pageTitle: 'Improve - Home',
+    page: 'home',
   });
 });

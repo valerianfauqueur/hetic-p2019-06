@@ -2,12 +2,22 @@ import Hammer from 'hammerjs';
 
 export default class InputSlider {
 
-  constructor(el, elClass, initValues, selected, increment = 1, direction = 'y', animation = { style: {}, time: 0 }, display = true, elDisplay = false) {
+  constructor(el, elClass, eventEl, initValues, selected, increment = 1, direction = 'y', animation = { style: {}, time: 0 }, display = true, elDisplay = false) {
     // The element that will contain our inputs
     this.el = el;
 
     // The class we want on our inputs
     this.elClass = elClass;
+
+
+    // Element we will listen event on
+
+    if (eventEl === false) {
+      // If there is container for the events we take the input container
+      this.eventEl = this.el;
+    }
+    // If there is a container for the events we take it
+    this.eventEl = eventEl;
 
     // Value of incrementation when scrolling
     this.increment = increment;
@@ -94,28 +104,30 @@ export default class InputSlider {
     this.scrollBinded = this.scrollEv.bind(this);
 
     // Fire a wheel scroll only if the mouse is on the element
-    this.el.addEventListener('mouseenter', () => {
+    this.eventEl.addEventListener('mouseenter', () => {
       window.addEventListener('mousewheel', this.scrollBinded);
     });
 
-    this.el.addEventListener('mouseleave', () => {
+    this.eventEl.addEventListener('mouseleave', () => {
       window.removeEventListener('mousewheel', this.scrollBinded);
     });
 
-    this.el.addEventListener('dragstart', e => e.preventDefault(), true);
+    this.eventEl.addEventListener('dragstart', e => e.preventDefault(), true);
 
     // Initiliase touch and mouse pan on container
-    this.mc = new Hammer.Manager(this.el);
+    this.mc = new Hammer.Manager(this.eventEl);
     const Pan = new Hammer.Pan();
     this.mc.add(Pan);
     this.mc.on('pan', this.scrollBinded, true);
 
-    // Take the velocity in order to create inertia effect
+    // // Take the velocity in order to create inertia effect
     this.mc.on('panend', (e) => {
-      const velocity = Math.abs(e.velocity);
-      if (velocity > 0.3) {
-        for (let i = 0, a = 1; i < velocity; i += 0.1, a += 1) {
-          setTimeout(() => this.scroll(this.lastScrollDirection), 25 * a);
+      if (this.lastScrollDirection !== undefined) {
+        const velocity = Math.abs(e.velocity);
+        if (velocity > 0.3) {
+          for (let i = 0, a = 1; i < velocity; i += 0.1, a += 1) {
+            setTimeout(() => this.scroll(this.lastScrollDirection), 25 * a);
+          }
         }
       }
     }, true);
@@ -136,28 +148,39 @@ export default class InputSlider {
       let mouseDif;
       const posX = e.changedPointers[0].pageX;
       const posY = e.changedPointers[0].pageY;
+      if (e.additionalEvent !== undefined) {
+        // Compare the difference between last position and current depending on the choosen axis
+        if (this.direction === 'x') {
+          if (e.additionalEvent === 'panleft' || e.additionalEvent === 'panright') {
+            mouseDif = posX - this.lastMousePos.x;
+          }
+        } else if (this.direction === 'y') {
+          if (e.additionalEvent === 'panup' || e.additionalEvent === 'pandown') {
+            mouseDif = posY - this.lastMousePos.y;
+          }
+        }
 
-      // Compare the difference between last position and current depending on the choosen axis
-      if (this.direction === 'x' && (e.additionalEvent === 'panleft' || e.additionalEvent === 'panright')) {
-        mouseDif = posX - this.lastMousePos.x;
-      } else if (this.direction === 'y' && (e.additionalEvent === 'panup' || e.additionalEvent === 'pandown')) {
-        mouseDif = posY - this.lastMousePos.y;
-      }
-      // If the difference is high enough trigger a scroll up or down
-      if (mouseDif < -20) {
-        this.scroll('up');
-        this.lastMousePos.y = posY;
-        this.lastMousePos.x = posX;
-      } else if (mouseDif > 20) {
-        this.scroll('down');
-        this.lastMousePos.y = posY;
-        this.lastMousePos.x = posX;
+        // If the difference is high enough trigger a scroll up or down
+        if (mouseDif < -20) {
+          if (e.additionalEvent === 'panup' || e.additionalEvent === 'panleft') {
+            this.scroll('up');
+          }
+        } else if (mouseDif > 20) {
+          if (e.additionalEvent === 'pandown' || e.additionalEvent === 'panright') {
+            this.scroll('down');
+          }
+        }
+        if (mouseDif > 20 || mouseDif < -20) {
+          this.lastMousePos.y = posY;
+          this.lastMousePos.x = posX;
+        }
       }
     }
   }
 
   // DOM manipulation for scroll
   scroll(direction) {
+    this.currentlyScrolling = true;
     const scrollElems = this.el.getElementsByClassName(this.elClass);
     const selectedEl = this.el.querySelector(`.${this.elClass}--selected`);
 
@@ -171,7 +194,6 @@ export default class InputSlider {
     } else if (direction === 'down') {
       nextSelectedEl = selectedEl.nextSibling;
     }
-
     // Change the selected el
     selectedEl.classList.remove(`${this.elClass}--selected`);
     nextSelectedEl.classList.add(`${this.elClass}--selected`);
