@@ -16,14 +16,14 @@
 }
 
 .exemple__point {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(80,227,194,1);
   font-family: "Source sans pro", Arial, sans-serif;
   font-weight: bolder;
   font-size: 25px;
@@ -31,29 +31,49 @@
 
   &::before{
     content:'';
-    height: calc(100% + 16px);
-    width: calc(100% + 16px);
+    height: 0;
+    width: 0;
     position: absolute;
-    left: -8px;
-    right: 0;
-    bottom: 0;
-    top: -8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
-    background-color: rgba(255,255,255,0.58);
+    background-color: rgba(80,227,194,0.58);
+    transition: all ease 0.4s;
+  }
+
+  &:hover::before {
+    height: calc(100% + 10px);
+    width: calc(100% + 10px);
   }
 
   & .plusIcon {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
+  }
+
+  &:hover .exemple__pointTextContainer {
+      height: 150px;
+      transition: translateY(0);
+      padding-top: 5px;
+
+      @include medium {
+        height: 130px;
+      }
   }
 }
 
 .exemple__pointTextContainer {
-  height: auto;
   width: 100vw;
   position: absolute;
   text-align: center;
-  background-color: rgba(255,255,255,0.58);
+  background-color: rgba(255,255,255,0.9);
+  padding-top: 0px;
+  height: 0px;
+  transition: translateY(-100px);
+  overflow: hidden;
+  z-index: 1;
+  transition: all ease 0.3s;
 
   & .plusIcon {
     width: 20px;
@@ -62,21 +82,127 @@
     top: 5px;
     transform: rotate(45deg);
     transform-origin: 50%  51%; /** CSS hacks to prevent blur on rotate **/
+
+    &__verticalBar {
+      background-color: black;
+    }
+
+    &__horizontalBar {
+      background-color: black;
+    }
+  }
+
+  @include medium {
+    width: 30vw;
+    height: 0;
   }
 }
 
-sub {
-  font-size: smaller;
-  vertical-align: sub;
+.exemple__liveChartTitle {
+  font-family: "Helvetica neue", Arial, sans-serif;
+  font-size: 24px;
+
+  sub {
+    font-size: smaller;
+    vertical-align: sub;
+  }
 }
 
 
+
 .exemple__point--lefthand {
-  top: 20vh;
-  left: 40vh;
+
+  @media (orientation: portrait) {
+    top: 20vh;
+    left: 10vw;
+  }
+
+  @media (orientation: landscape) {
+    top: 20vh;
+    left: 37vw;
+  }
 
   .exemple__pointTextContainer {
-    top:10vh;
-    left:-40vh;
+
+    @media (orientation: portrait) {
+      top: 10vh;
+      left: -10vw;
+    }
+
+    @media (orientation: landscape) {
+      top: 17vh;
+      left: -37vw;
+    }
+
+    @include medium {
+      top: 8vh;
+      left: auto;
+    }
+  }
+}
+
+.exemple__point--heart {
+
+  & .heart {
+    color: #F75E66;
+  }
+
+  @media (orientation: portrait) {
+    top: 20vh;
+    left: 35vw;
+  }
+
+  @media (orientation: landscape) {
+    top: 20vh;
+    left: 45vw;
+  }
+
+  .exemple__pointTextContainer {
+
+    @media (orientation: portrait) {
+      top: 7vh;
+      left: -35vw;
+    }
+
+    @media (orientation: landscape) {
+      top: 10vh;
+      left: -45vw;
+    }
+
+    @include medium {
+      top: 5vh;
+      left: auto;
+    }
+  }
+}
+
+.exemple__point--rightleg {
+
+  @media (orientation: portrait) {
+    top: 50vh;
+    left: 70vw;
+  }
+
+  @media (orientation: landscape) {
+    top: 42vh;
+    left: 55vw;
+  }
+
+  .exemple__pointTextContainer {
+
+    @media (orientation: portrait) {
+      top: 7vh;
+      left: -70vw;
+    }
+
+    @media (orientation: landscape) {
+      bottom: 15vh;
+      left: -55vw;
+    }
+
+    @include medium {
+      top: 5vh;
+      left: auto;
+    }
   }
 }
