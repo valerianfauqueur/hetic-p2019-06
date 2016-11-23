@@ -2,7 +2,6 @@
   height: 100vh;
   width: 100vw;
   position: fixed;
-  top: 50px;
   z-index: 1;
   visibility: hidden;
   font-family: 'Helvetica neue', Arial, sans-serif;
@@ -38,10 +37,10 @@
   }
 
   @include medium {
-    height: 50px;
+    height: 80px;
     width: 100%;
     position: absolute;
-    background-color: initial;
+    background-color: #000;
     visibility: visible;
     color: black;
   }
@@ -119,7 +118,7 @@
       height: 50px;
       margin-right:30px;
       margin-left:6vw;
-      background-image: url('../img/logo-improve--black.png');
+      background-image: url('../img/logo-improve--white.png');
       background-repeat: no-repeat;
       background-size: 120px 31.25px;
       background-position: center center;
@@ -146,7 +145,8 @@
     margin: 2%;
     z-index: 0;
     opacity: 1;
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: lighter;
     transform: translateY(0);
 
     &:first-child {
@@ -160,24 +160,27 @@
       justify-content: center;
       margin-left: auto;
       margin-right: 6vw;
-      background-color:black;
+      background-color: $accentColor;
       border-radius: 100px;
       font-size: 18px;
       transition-delay: 0s;
     }
 
     &:last-child:hover {
-      background-color: white;
+      background-color:#fff;
       color: black;
+      font-size:18px;
     }
 
     &:last-child .nav__itemLink {
       white-space: nowrap;
-      color: white;
+      color: #fff;
     }
 
     &:last-child:hover .nav__itemLink {
-      color: black;
+      color: #000;
+      font-size:18px;
+      font-weight:normal;
     }
 
     &:last-child .nav__itemLink:last-child::before {
@@ -196,6 +199,8 @@
 
   &:hover {
     color: rgba(255,255,255,1);
+    font-size:25px;
+    font-weight:bold;
   }
 
   &:before {
@@ -217,11 +222,11 @@
   }
 
   @include medium {
-    color: rgba(0,0,0,0.58);
+    color: #6C6C6C;
   }
 
   &--active {
-    color: rgba(255,255,255,1);
+    color: #fff;
 
     @include medium {
       color: rgba(0,0,0,1);
