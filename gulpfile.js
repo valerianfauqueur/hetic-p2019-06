@@ -44,7 +44,7 @@ gulp.task('scss', function() {
 });
 
 gulp.task('bundle', function() {
-  gulp.src(dirs.clientJs + '/**/*.js')
+  gulp.src(dirs.clientJs + '/main.js')
     .pipe(webpackStream({
         devtool: 'source-map',
         output: {
