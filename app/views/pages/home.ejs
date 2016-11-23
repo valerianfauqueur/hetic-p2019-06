@@ -1,15 +1,33 @@
 <header class='exemple'>
-  <div class='exemple__point exemple__point--lefthand'>
+  <div data-exemple='1' class='exemple__point exemple__point--lefthand'>
     <div class='plusIcon'>
       <div class='plusIcon__horizontalBar'></div>
       <div class='plusIcon__verticalBar'></div>
     </div>
     <div class='exemple__pointTextContainer'>
-      <div class='plusIcon'>
-        <div class='plusIcon__horizontalBar'></div>
-        <div class='plusIcon__verticalBar'></div>
-      </div>
-      <div class='exemple__liveChartTitle'>CO<sub>2</sub> dans le sang</div>
+      <div class='exemple__liveChartTitle'>Taux de CO<sub>2</sub></div>
+      <div class='exemple__liveChart'></div>
+    </div>
+  </div>
+
+  <div data-exemple='2' class='exemple__point exemple__point--heart'>
+    <div class='plusIcon'>
+      <div class='plusIcon__horizontalBar'></div>
+      <div class='plusIcon__verticalBar'></div>
+    </div>
+    <div class='exemple__pointTextContainer'>
+      <div class='exemple__liveChartTitle'>Battements de <span class='heart'>❤</span></div>
+      <div class='exemple__liveChart'></div>
+    </div>
+  </div>
+
+  <div data-exemple='3' class='exemple__point exemple__point--rightleg'>
+    <div class='plusIcon'>
+      <div class='plusIcon__horizontalBar'></div>
+      <div class='plusIcon__verticalBar'></div>
+    </div>
+    <div class='exemple__pointTextContainer'>
+      <div class='exemple__liveChartTitle'>Taux d'oxigène</div>
       <div class='exemple__liveChart'></div>
     </div>
   </div>
@@ -41,9 +59,6 @@
           Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son
           inclusion dans des
     applications de mise en page de texte, comme Aldus PageMaker.
-
-
-
   </p>
 </section>
 
