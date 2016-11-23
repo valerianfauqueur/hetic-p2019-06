@@ -1,0 +1,113 @@
+.product__caracteristique{
+	width:100%;
+	margin-top: 20px;
+	font-family: "Helvetica neue", sans-serif;
+	img{
+		margin-bottom: 70px;
+	}
+	@include medium { 
+		display: flex;
+    	flex-direction: row-reverse;
+	}
+}
+
+.product__caracteristiqueTitle{
+	padding:20px 20px;
+	font-size:20px;
+	text-transform: uppercase;
+	@include medium {
+		position: absolute;
+	    width: 100%;
+	    text-align: left;
+	    padding-left: 150px;
+	    font-size: 50px;
+	    font-weight: 700;
+	    color: #424141;
+	}
+}
+
+.product__caracteristiqueTexte{
+    line-height: 1.25rem;
+    font-size: 14px;
+    font-weight: normal;
+    background-image: url('/img/plus-improve--caracteristique.png');
+    background-repeat: no-repeat;
+    background-position: 45px -5px;
+    margin-bottom: 50px;
+    @include medium {
+    	margin-top:150px;
+    	font-size: 18px;
+    	line-height: 25px;
+    	background-position: 355px -15px;
+    	background-size: 32%;
+    	padding-top: 25px;
+    }
+}
+
+.product__fonctionnalites{
+	width:100%;
+	margin-bottom: 50px;
+	img{
+		margin-bottom: 70px;
+		@include medium {margin-top: 200px;}
+	}
+	@include medium {
+		width: 100%;
+    	display: flex;
+    	justify-content:space-around;
+    	margin-top: 50px;
+	}
+}
+
+.product__fonctionnalitesTitle{
+	padding:20px 20px;
+	font-size:20px;
+	text-transform: uppercase;
+	@include medium {
+		position: absolute;
+	    width: 100%;
+	    text-align: left;
+	    padding-left: 120px;
+	    font-size: 50px;
+	    font-weight: 700;
+	    color: #424141;
+	    text-transform: uppercase;
+	}
+}
+
+.product__verticalLine{
+	display: none;
+	@include medium {
+		width:4px;
+		height:150px;
+		background-color: $accentColor;
+		margin-top: 200px;
+		border:0;
+		display: block;
+	}
+	
+}
+
+hr{display:none;}
+
+.product__fonctionnalitesTexte{
+    line-height: 1.25rem;
+    font-size: 14px;
+    font-weight: normal;
+    @include medium {
+    	margin-top: 200px;
+    	font-size: 18px;
+    	line-height: 25px;
+
+    }
+}
+
+.product__smallLine{
+	width:30px;
+	height: 4px;
+	margin:10px 0;
+	background-color: $accentColor;
+	border:0;
+	@include medium {margin-top: 200px;display: none;}
+
+}
