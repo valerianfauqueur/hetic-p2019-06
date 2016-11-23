@@ -8,6 +8,12 @@ function switchQuestion(e) {
     const nextQuestionEl = document.querySelector('.survey .survey__question[data-question="1"]');
     surveyIntroEl.classList.add('survey__introduction--over');
     nextQuestionEl.classList.add('survey__question--current');
+  } else if (e.target.dataset.next === 'result') {
+    const resultEl = document.querySelector('.survey .survey__result');
+    const currentQuestionNumber = parseInt(e.target.parentNode.dataset.question, 10);
+    const currentQuestionEl = document.querySelector(`.survey .survey__question[data-question="${currentQuestionNumber}"]`);
+    currentQuestionEl.classList.remove('survey__question--current');
+    resultEl.classList.add('survey__result--current');
   } else {
     const nextQuestionNumber = parseInt(e.target.dataset.next, 10);
     const currentQuestionNumber = parseInt(e.target.parentNode.dataset.question, 10);
