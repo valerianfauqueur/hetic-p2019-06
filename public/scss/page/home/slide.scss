@@ -68,6 +68,7 @@
   justify-content: center;
   flex-direction: row;
   background-color: $siteHPcolor;
+  position: relative;
 
   @include desktop {
     flex:1;
@@ -76,13 +77,47 @@
   }
 }
 
+.slider_slide {
+  height:100%;
+  width:100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &:nth-child(1) {
+    background-image: url('../img/slider/1.jpg');
+  }
+
+  &:nth-child(2) {
+    background-image: url('../img/slider/2.jpg');
+    display:none;
+  }
+
+  &:nth-child(3) {
+    background-image: url('../img/slider/3.jpg');
+    display:none;
+  }
+
+  &--active {
+    display: block;
+  }
+}
+
+.slide__controls {
+  position: absolute;
+  bottom:2vh;
+  display: flex;
+  flex-direction: row;
+}
+
 .slider__controlPoint {
   background-color: white;
   width:20px;
   height:20px;
-  margin: 2.5vh 20px;
+  margin: 0 15px;
   border-radius: 50%;
   transition: all ease 0.3s;
+  z-index: 1;
 
   &--active {
     background-color: $siteHPcolor;
