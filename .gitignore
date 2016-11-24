@@ -1,0 +1,11 @@
+# logs files
+*.log
+
+# Hidden files
+.DS_Store
+
+# Dependency directories
+node_modules
+
+# Compiled files
+dist

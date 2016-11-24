@@ -1,0 +1,128 @@
+<section class='survey'>
+  <section class='survey__introduction'>
+    <h2 class='survey__introductionTitle'>Dites nous en un peu plus à votre sujet</h2>
+    <hr class='survey__introductionSeparation'>
+    <p class='survey__introductionDescription'>
+      Préparez-vous à devenir meilleur
+    </p>
+    <button data-next='1' class='survey__introductionCTA'>C'est parti !</button>
+  </section>
+
+  <article data-question='1' class='survey__question survey__question--age'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>01</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Quel est votre âge ?</h2>
+    <section class='survey__questionAnswer'>
+      <div class='survey__questionAnswerInputs'></div>
+      <div class='survey__questionAnswerUnit'>ans</div>
+    </section>
+    <button data-next='2' class='survey__questionValidation'>Suivant</button>
+  </article>
+
+  <article  data-question='2' class='survey__question survey__question--height'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>02</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Quel est votre taille ?</h2>
+    <section class='survey__questionAnswer'>
+      <div class='survey__questionAnswerPointer'><hr></div>
+      <div class='survey__questionAnswerInputs'></div>
+      <div class='survey__questionAnswerUnit'>cm</div>
+    </section>
+    <button data-next='3' class='survey__questionValidation'>Suivant</button>
+  </article>
+
+  <article  data-question='3' class='survey__question survey__question--weight'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>03</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Quel est votre poids ?</h2>
+    <section class='survey__questionAnswer'>
+      <div class='survey__questionAnswerDisplay'>
+        <span></span>
+        <span class='survey__questionAnswerUnit'>kg</span>
+      </div>
+      <div class='survey__questionAnswerInputs'></div>
+    </section>
+    <button data-next='4' class='survey__questionValidation'>Suivant</button>
+  </article>
+
+  <article data-question='4' class='survey__question survey__question--profile'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>04</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Quel est votre profil sportif ?</h2>
+    <section class='survey__questionAnswer'>
+        <ul class='survey__questionAnswerInputs survey__questionAnswerInputs--sport'>
+          <li class='survey__questionAnswerInput'>Athlète</li>
+          <li class='survey__questionAnswerInput'>Avancée</li>
+          <li class='survey__questionAnswerInput survey__questionAnswerInput--selected'>Régulier</li>
+          <li class='survey__questionAnswerInput'>Débutant</li>
+          <li class='survey__questionAnswerInput'>Pas sportif :(</li>
+        </ul>
+      </div>
+    </section>
+    <button data-next='5' class='survey__questionValidation'>Suivant</button>
+  </article>
+
+  <article data-question='5' class='survey__question survey__question--profile'>
+    <div class='survey__wizard'>
+      <div class='survey__wizardCurrent'>05</div>
+      <hr class='survey__wizardSep'>
+      <div class='survey__wizardAll'>05</div>
+    </div>
+    <h2 class='survey__questionTitle'>Êtes vous fumeur ?</h2>
+    <section class='survey__questionAnswer'>
+        <ul class='survey__questionAnswerInputs survey__questionAnswerInputs--smoke'>
+          <li class='survey__questionAnswerInput survey__questionAnswerInput--selected'>Non</li>
+          <li class='survey__questionAnswerInput'>Oui</li>
+        </ul>
+      </div>
+    </section>
+    <button data-next='result' class='survey__questionValidation'>Suivant</button>
+  </article>
+
+  <article class='survey__result'>
+    <div class='survey__resultCatchContainer'>
+      <h2 class='survey__resultCatch'>6,3</h2>
+      <h4 class='survey__resultCatchDesc'>LÉGER SURPOIDS</h4>
+   </div>
+    <div class='survey__indices'>
+      <div class='survey__indicesItem'>
+        <div class='survey__indicesNum'>25,7</div>
+        <div class='survey__indicesDesc'>IMC</div>
+      </div>
+      <div class='survey__indicesItem'>
+        <div class='survey__indicesNum'>20,1</div>
+        <div class='survey__indicesDesc'>IMG</div>
+      </div>
+      <div class='survey__indicesItem'>
+        <div class='survey__indicesDesc'>😣</div>
+      </div>
+    </div>
+    <div class='survey__avantages'>
+      <div class='survey__avantageItem'>
+        <div class='survey__avantageNum'>86%</div>
+        <div class='survey__avantageDesc'>des utilisateurs de la puce ont optimisé leur IMC en moins de 3 mois</div>
+      </div>
+      <div class='survey__avantageItem'>
+        <div class='survey__avantageNum'>99%</div>
+        <div class='survey__avantageDesc'>des utilisateurs sont satisfaits de leur puce improve</div>
+      </div>
+      <div class='survey__avantageItem'>
+        <div class='survey__avantageNum'>67%</div>
+        <div class='survey__avantageDesc'>des utilisateurs pensent que la puce improve a radicalement changer leur vie</div>
+      </div>
+    </div>
+    <button class='survey__questionValidation'><a href='/home'>Découvrir</a></button>
+  </article>
+</section>

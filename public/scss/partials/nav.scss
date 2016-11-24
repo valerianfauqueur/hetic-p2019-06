@@ -1,0 +1,229 @@
+.nav__container {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 50px;
+  z-index: 2;
+  visibility: hidden;
+  font-family: 'Helvetica neue', Arial, sans-serif;
+  font-weight: bold;
+  color: white;
+
+  &--disabled {
+    display: none;
+  }
+
+  &--active {
+    visibility: visible;
+
+    .nav__item {
+      transform: translateY(0);
+      opacity: 1;
+      transition-duration: 0.2s;
+    }
+
+    .nav__toggle::before {
+      transform: scale(40);
+      transition-delay: 0s;
+      transition-timing-function: ease-in;
+    }
+
+    .nav__toggle .top {
+      transform: translateY(8px) rotateZ(45deg);
+    }
+
+    .nav__toggle .bottom {
+      transform: translateY(-8px) rotateZ(-45deg);
+    }
+
+    .nav__toggle .middle {
+      width: 0;
+    }
+  }
+
+  @include medium {
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    background-color: initial;
+    visibility: visible;
+    color: black;
+  }
+}
+
+.nav__toggle {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+
+  @include medium {
+    display: none;
+  }
+
+  .bar  {
+    height: 3px;
+    width: 24px;
+    display: block;
+    margin: 5px auto;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  &::before {
+    content: '';
+    width: 48px;
+    height: 48px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translateZ(0);
+    transform: scale(1);
+    background-color: black;
+    transform-origin: center 30%;
+    transition: all ease-out 0.3s;
+    transition-delay: 0.3s;
+  }
+}
+
+.nav__toggleIcon {
+  position: fixed;
+  font-size: 36px;
+  color: white;
+}
+
+.nav {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  @include medium {
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  @include desktop {
+    &::before {
+      content:'';
+      width: 120px;
+      height: 50px;
+      margin-right:30px;
+      margin-left:6vw;
+      background-image: url('../img/logo-improve--black.png');
+      background-repeat: no-repeat;
+      background-size: 120px 31.25px;
+      background-position: center center;
+    }
+  }
+}
+
+.nav__item {
+  padding: 12px 0;
+  transform: translateY(100px);
+  z-index: 3;
+  opacity: 0;
+  font-size: 48px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      transition-delay: $i * .1s;
+    }
+  }
+
+  @include medium {
+    margin: 2%;
+    z-index: 1;
+    opacity: 1;
+    font-size: 24px;
+    transform: translateY(0);
+
+    &:first-child {
+      margin-left: 6vw;
+    }
+
+    &:last-child {
+      width:150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: 6vw;
+      background-color:black;
+      border-radius: 100px;
+      font-size: 18px;
+      transition-delay: 0s;
+    }
+
+    &:last-child:hover {
+      background-color: $accentColor;
+    }
+
+    &:last-child .nav__itemLink {
+      white-space: nowrap;
+      color: white;
+    }
+
+    &:last-child .nav__itemLink:last-child::before {
+      display: none;
+    }
+  }
+}
+
+.nav__itemLink {
+  position: relative;
+  text-decoration: none;
+  color: rgba(255,255,255,1);
+  cursor: pointer;
+  transform: translateZ(0);
+  transition: all ease 0.3s;
+
+  &:hover {
+    color: rgba(255,255,255,1);
+  }
+
+  &:before {
+    content:'';
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: $accentColor;
+    transition: all ease-out 0.3s;
+  }
+
+  &:hover::before{
+    width: calc(100% + 20px);
+  }
+
+  @include medium {
+    color: rgba(0,0,0,0.58);
+  }
+
+  &--active {
+    color: rgba(255,255,255,1);
+
+    @include medium {
+      color: rgba(0,0,0,1);
+    }
+  }
+}

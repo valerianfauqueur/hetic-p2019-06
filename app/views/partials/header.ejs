@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><%= pageTitle %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+        <script defer src="/js/bundle.js"></script>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <header>
+          <nav class='nav__container <%= page === 'survey' ? 'nav__container--disabled' : '' %>'>
+            <div class='nav__toggle'>
+              <div class="nav__toggleIcon">
+                <div class="bar top"></div>
+                <div class="bar middle"></div>
+                <div class="bar bottom"></div>
+              </div>
+            </div>
+            <ul class='nav'>
+              <li class='nav__item'><a class='nav__itemLink <%= page === 'home' ? 'nav__itemLink--active' : '' %>' href='/home'>Technologie</a></li>
+              <li class='nav__item'><a class='nav__itemLink <%= page === 'product' ? 'nav__itemLink--active' : '' %>'  href='/product'>Puce</a></li>
+              <li class='nav__item'><a class='nav__itemLink' href='#'>Actualités</a></li>
+              <li class='nav__item'><a class='nav__itemLink' href='#'>FAQ</a></li>
+              <li class='nav__item'><a class='nav__itemLink' href='/'>Se tester</a></li>
+            </ul>
+          </nav>
+        </header>
