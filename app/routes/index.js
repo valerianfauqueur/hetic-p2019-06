@@ -13,3 +13,10 @@ app.get('/home', (req, res) => {
     page: 'home',
   });
 });
+
+app.get('/product', (req, res) => {
+  res.render('index', {
+    pageTitle: 'Improve - Product',
+    page: 'product',
+  });
+});
