@@ -10,7 +10,9 @@ var gulp = require('gulp'),
   eslint = require('gulp-eslint'),
   plumber = require('gulp-plumber'),
   webpack = require('webpack'),
-  webpackStream = require('webpack-stream');
+  webpackStream = require('webpack-stream'),
+  uglifyjs = require('gulp-uglifyjs'),
+  uglifycss = require('gulp-uglifycss');
 
 var processors = [
   autoprefixer,
@@ -31,14 +33,17 @@ dirs.img = dirs.src + 'img';
 dirs.distCss = dirs.dist + 'css';
 dirs.distJs = dirs.dist + 'js';
 dirs.distImg = dirs.dist + 'img';
+dirs.distFonts = dirs.dist + 'fonts';
 dirs.serverJs = dirs.app;
 dirs.views = dirs.app + 'views';
+dirs.fonts = dirs.src + 'fonts';
 
 gulp.task('scss', function() {
   return gulp.src(dirs.scss + '/main.scss')
     .pipe(plumber())
     .pipe(sass())
     .pipe(postcss(processors))
+    .pipe(uglifycss())
     .pipe(gulp.dest(dirs.distCss))
     .pipe(sync.stream());
 });
@@ -46,7 +51,6 @@ gulp.task('scss', function() {
 gulp.task('bundle', function() {
   gulp.src(dirs.clientJs + '/main.js')
     .pipe(webpackStream({
-        devtool: 'source-map',
         output: {
           path: '/dist/js',
           filename: 'bundle.js'
@@ -71,7 +75,13 @@ gulp.task('bundle', function() {
     .on('error', (err) => {
       console.log(err)
     })
+    .pipe(uglifyjs())
     .pipe(gulp.dest(dirs.distJs));
+});
+
+gulp.task('moveFonts', function() {
+    return gulp.src(dirs.fonts + '/**/*')
+      .pipe(gulp.dest(dirs.distFonts));
 });
 
 gulp.task('imgOptimiz', function() {
@@ -107,6 +117,6 @@ gulp.task('nodemon', function(cb) {
   });
 });
 
-gulp.task('default', ['sync'], function() {
+gulp.task('default', ['imgOptimiz', 'moveFonts', 'sync'], function() {
   runSequence('nodemon');
 });
