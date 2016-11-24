@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-          <nav class='nav__container'>
+          <nav class='nav__container <%= page === 'survey' ? 'nav__container--disabled' : '' %>'>
             <div class='nav__toggle'>
               <div class="nav__toggleIcon">
                 <div class="bar top"></div>
@@ -19,11 +19,11 @@
               </div>
             </div>
             <ul class='nav'>
-              <li class='nav__item'><a class='nav__itemLink <%= page === 'survey' ? 'nav__itemLink--active' : '' %>' href='#'>Technologie</a></li>
-              <li class='nav__item'><a class='nav__itemLink' href='#'>Puce</a></li>
+              <li class='nav__item'><a class='nav__itemLink <%= page === 'home' ? 'nav__itemLink--active' : '' %>' href='/home'>Technologie</a></li>
+              <li class='nav__item'><a class='nav__itemLink <%= page === 'product' ? 'nav__itemLink--active' : '' %>'  href='/product'>Puce</a></li>
               <li class='nav__item'><a class='nav__itemLink' href='#'>Actualités</a></li>
               <li class='nav__item'><a class='nav__itemLink' href='#'>FAQ</a></li>
-              <li class='nav__item'><a class='nav__itemLink' href='#'>Se tester</a></li>
+              <li class='nav__item'><a class='nav__itemLink' href='/'>Se tester</a></li>
             </ul>
           </nav>
         </header>

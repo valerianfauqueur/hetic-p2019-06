@@ -9,6 +9,10 @@
   font-weight: bold;
   color: white;
 
+  &--disabled {
+    display: none;
+  }
+
   &--active {
     visibility: visible;
 
@@ -167,17 +171,12 @@
     }
 
     &:last-child:hover {
-      background-color: white;
-      color: black;
+      background-color: $accentColor;
     }
 
     &:last-child .nav__itemLink {
       white-space: nowrap;
       color: white;
-    }
-
-    &:last-child:hover .nav__itemLink {
-      color: black;
     }
 
     &:last-child .nav__itemLink:last-child::before {
@@ -208,7 +207,7 @@
     right: 0;
     bottom: 0;
     z-index: -1;
-    background-color: black;
+    background-color: $accentColor;
     transition: all ease-out 0.3s;
   }
 

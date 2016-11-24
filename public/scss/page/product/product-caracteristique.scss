@@ -5,7 +5,7 @@
 	img{
 		margin-bottom: 70px;
 	}
-	@include medium { 
+	@include medium {
 		display: flex;
     	flex-direction: row-reverse;
 	}
@@ -86,10 +86,10 @@
 		border:0;
 		display: block;
 	}
-	
+
 }
 
-hr{display:none;}
+
 
 .product__fonctionnalitesTexte{
     line-height: 1.25rem;

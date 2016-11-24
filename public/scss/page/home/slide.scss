@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $siteHPcolor;
+  color: $accentColor;
 
   &::before {
     content:'IMPROVE';
@@ -67,7 +67,7 @@
   align-items: flex-end;
   justify-content: center;
   flex-direction: row;
-  background-color: $siteHPcolor;
+  background-color: $accentColor;
   position: relative;
 
   @include desktop {
@@ -120,7 +120,7 @@
   z-index: 1;
 
   &--active {
-    background-color: $siteHPcolor;
+    background-color: $accentColor;
   }
 }
 
@@ -134,13 +134,13 @@
     &__horizontalBar {
       width: 6px;
       margin-left: -3px;
-      background-color: $siteHPcolor;
+      background-color: $accentColor;
     }
 
     &__verticalBar {
       height: 6px;
       margin-top: -3px;
-      background-color: $siteHPcolor;
+      background-color: $accentColor;
     }
   }
 
@@ -161,13 +161,13 @@
       &__horizontalBar {
         width:80px;
         margin-left: -40px;
-        background-color: $siteHPcolor;
+        background-color: $accentColor;
       }
 
       &__verticalBar {
         height: 80px;
         margin-top: -40px;
-        background-color: $siteHPcolor;
+        background-color: $accentColor;
       }
     }
   }
@@ -180,10 +180,11 @@
   align-items: center;
   font-family: "Source sans pro", Arial, sans-serif;
   margin: 0 5vw;
-  overflow: scroll;
+  overflow-y: scroll;
 
   @include medium {
     font-size: 19px;
+    overflow: auto;
   }
 
   @include desktop {
@@ -201,6 +202,7 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     text-align: left;
+    overflow: auto;
   }
 }
 
@@ -218,7 +220,7 @@
     position: absolute;
     left:0px;
     top:-12px;
-    color: $siteHPcolor;
+    color: $accentColor;
   }
 
   @for $i from 1 through 5 {
@@ -229,23 +231,6 @@
 }
 
 .slide--left {
-
-  .slide__title {
-    @include desktop {
-      justify-content: flex-start;
-      padding-left: 8vw;
-      padding-right: 0;
-
-      &::before {
-        font-size: 200px;
-        position: absolute;
-        display: flex;
-        right:0;
-        justify-content: flex-end;
-        align-items: center;
-      }
-    }
-  }
 
   .slide__content {
     @include desktop {

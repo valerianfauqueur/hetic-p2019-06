@@ -43,7 +43,7 @@
 .survey__introductionSeparation {
   width: 25%;
   margin: 20px 0;
-  border: 1px solid $surveyAccentColor;
+  border: 2px solid $accentColor;
 }
 
 .survey__introductionDescription {
@@ -57,6 +57,14 @@
   border-radius: 50px;
   background-color: black;
   color: white;
+  cursor: pointer;
+  font-family: "Helvetica neue", Arial, sans-serif;
+  font-size: 18px;
+  transition: all ease 0.3s;
+
+  &:hover {
+    background-color: $accentColor;
+  }
 }
 .survey__question {
   height: 100vh;
@@ -111,7 +119,7 @@
 }
 
 .survey__wizardSep {
-  border: 1px solid $surveyAccentColor;
+  border: 1px solid $accentColor;
   width:10px;
   margin: 7px 0;
 }
@@ -173,7 +181,7 @@
       right: 0;
       bottom: 0;
       z-index: -1;
-      background-color: black;
+      background-color: $accentColor;
       transition: all ease-out 0.3s;
     }
 
@@ -272,6 +280,10 @@
     margin-left: 10px;
     font-size: 36px;
     font-weight: bold;
+
+    @include desktop {
+      font-size: 60px;
+    }
   }
 }
 
@@ -289,7 +301,7 @@
     hr {
       width: 60px;
       margin-left: auto;
-      border: 2px solid $surveyAccentColor;
+      border: 2px solid $accentColor;
 
       @include desktop {
         border-width: 5px;
@@ -379,7 +391,7 @@
 
   .survey__questionAnswerInput--selected {
     height: 90%;
-    background-color: $surveyAccentColor;
+    background-color: $accentColor;
   }
 
   .survey__questionAnswerUnit {
@@ -425,13 +437,13 @@
       visibility: hidden;
       margin: 10px;
       white-space: nowrap;
-      border: 2px solid $surveyAccentColor;
+      border: 2px solid $accentColor;
       transition: all ease-in 0.3s;
       content: '';
 
       @include desktop {
         height: 4px;
-        border: 4px solid $surveyAccentColor;
+        border: 4px solid $accentColor;
       }
     }
   }
@@ -446,7 +458,7 @@
     &:before, &:after {
       width: 100px;
       visibility: visible;
-      border: 2px solid $surveyAccentColor;
+      border: 2px solid $accentColor;
     }
   }
 
